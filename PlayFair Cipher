@@ -64,4 +64,31 @@ def encrypt():
         i = i + 2
     print("\n")
 
+def decrypt():
+    msg = str(input("\nEnter Ciphertext: "))
+    msg = msg.upper()
+    msg = msg.replace(" ", "")
+    print("Plaintext: ", end = '')
+    i = 0
+    while i < len(msg):
+        loc = list()
+        loc = locindex(msg[i])
+        loc1 = list()
+        loc1 = locindex(msg[i + 1])
+        if loc[1] == loc1[1]:
+            print("{}{}".format(my_matrix[(loc[0]-1)%5][loc[1]], my_matrix[(loc1[0]-1)%5][loc1[1]]), end = '')
+        elif loc[0]==loc1[0]:
+            print("{}{}".format(my_matrix[loc[0]][(loc[1]-1)%5], my_matrix[loc1[0]][(loc1[1]-1)%5]), end = '')  
+        else:
+            print("{}{}".format(my_matrix[loc[0]][loc1[1]], my_matrix[loc1[0]][loc[1]]), end = '')    
+        i = i + 2
+    print("\n")
 
+while(1):
+    command = str(input("\nPer enkriptimin e nje teksti me ane te celesit te dhene shtypni 'E' \nPer dekriptimin e nje teksti me ane te celesit te dhene shtypni 'D'\nKomanda: "))
+    command = command.upper()
+    if command == 'E':
+        encrypt()
+    elif command == 'D':
+        decrypt()
+    break
