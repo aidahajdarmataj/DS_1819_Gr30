@@ -1,1 +1,28 @@
-
+key = input("Key: ")
+key = key.replace(" ", "")
+key = key.upper()
+def matrix(x, y, initial):
+    return [[initial for i in range(x)] for j in range(y)]
+result = list()
+for c in key:
+    if c not in result:
+        if c== 'J':
+            result.append('I')
+        else:
+            result.append(c)
+flag = 0
+for i in range(65, 91):
+    if chr(i) not in result:
+        if i == 73 and chr(74) not in result:
+            result.append("I")
+            flag = 1
+        elif flag == 0 and i == 73 or i == 74:
+            pass    
+        else:
+            result.append(chr(i))
+k = 0
+my_matrix = matrix(5, 5, 0) 
+for i in range(0, 5):
+    for j in range(0, 5):
+        my_matrix[i][j] = result[k]
+        k+=1
